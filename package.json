@@ -1,0 +1,34 @@
+{
+  "name": "PDP-TESTING",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cypress.config.js",
+  "scripts": {
+    "merge:reports": "npx mochawesome-merge cypress/reports/html/*.json > mochawesome.json",
+    "generate:report": "npx mochawesome-report-generator mochawesome.json --reportDir cypress/final-report --reportTitle 'Aivante Regression Report'",
+    "report": "npm run merge:reports && npm run generate:report",
+   
+    "test:regression":"npx cypress run --browser chrome --headless --env dependencyFile=C:\\Users\\ranik\\Downloads\\consistency_dependency.csv",
+    "test:critical": "npx cypress run --env grep=@critical",
+    "test:all": "npm run test:regression && npm run test:critical",
+    "run:full": "npm run test:regression && npm run report && start cypress/final-report/mochawesome.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^14.3.3",
+    "cypress-grep": "^3.0.4",
+    "cypress-mochawesome-reporter": "^3.8.4",
+    "cypress-xpath": "^2.0.1",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.4.1",
+    "mochawesome-report-generator": "^6.2.0"
+  },
+  "dependencies": {
+    "axios": "^1.9.0",
+    "convert-csv-to-json": "^3.5.0",
+    "neat-csv": "^7.0.0",
+    "xlsx": "^0.18.5"
+  }
+}
